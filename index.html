@@ -86,13 +86,13 @@
             .hero-section {
                 min-height: 45vh;
             }
-             /* On mobile, we can add a static fallback image if the video is too heavy */
+                /* On mobile, we can add a static fallback image if the video is too heavy */
             #hero-video {
                 /* Optional: uncomment the line below to hide video on mobile */
                 /* display: none; */
             }
             .hero-section {
-                 /* Add a background image for mobile devices if video is hidden */
+                    /* Add a background image for mobile devices if video is hidden */
                 /* background-image: url('YOUR_FALLBACK_IMAGE.jpg'); */
                 /* background-size: cover; */
                 /* background-position: center; */
@@ -251,9 +251,9 @@
         /* Mobile Logo Styling */
         @media (max-width: 767px) {
             .mobile-logo {
-                height: 120px;
+                height: 180px;
                 width: auto;
-                max-width: 170px;
+                max-width: 220px;
                 object-fit: contain;
                 margin: 0 auto;
                 display: block;
@@ -364,61 +364,102 @@
         }
 		
 		/* --- NEW, SAFE STYLES FOR "Our Services" SECTION --- */
-.modern-service-card {
-    display: block;
-    position: relative;
-    height: 380px;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    text-decoration: none;
-    border: 2px solid #C19F58;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.modern-service-card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
-}
-.modern-service-card-bg {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.4s ease;
-}
-.modern-service-card:hover .modern-service-card-bg {
-    transform: scale(1.1);
-}
-.modern-service-card-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(to top, rgba(26, 47, 69, 1) 20%, rgba(26, 47, 69, 0.7) 50%, transparent 85%);
-    z-index: 1;
-}
-.modern-service-card-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 100%;
-    padding: 1.5rem;
-    text-align: left;
-    color: #F8F4E3;
-}
-.modern-service-card-content h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-}
-.modern-service-card-content p {
-    font-size: 0.9rem;
-    padding-top: 0.5rem;
-    color: #E0E0E0;
-}
+        .modern-service-card {
+            display: block;
+            position: relative;
+            height: 380px;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            text-decoration: none;
+            border: 2px solid #C19F58;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .modern-service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+        }
+        .modern-service-card-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.4s ease;
+        }
+        .modern-service-card:hover .modern-service-card-bg {
+            transform: scale(1.1);
+        }
+        .modern-service-card-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(26, 47, 69, 1) 20%, rgba(26, 47, 69, 0.7) 50%, transparent 85%);
+            z-index: 1;
+        }
+        .modern-service-card-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            color: #F8F4E3;
+        }
+        .modern-service-card-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .modern-service-card-content p {
+            font-size: 0.9rem;
+            padding-top: 0.5rem;
+            color: #E0E0E0;
+        }
 
+        /* FREE OFFER SECTION STYLES */
+        .free-offer-panel {
+            background-color: #1F3650;
+            border: 2px solid #C19F58;
+            border-radius: 1rem;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .offer-card {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Light subtle border */
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .offer-card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .offer-icon {
+            font-size: 4rem;
+            color: #C19F58;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: transform 0.4s ease, text-shadow 0.4s ease;
+        }
+        .offer-card:hover .offer-icon {
+            transform: rotateY(360deg);
+            text-shadow: 0 0 15px #C19F58;
+        }
+        .offer-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #F8F4E3;
+            margin-bottom: 0.5rem;
+        }
+        .offer-card p {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 
@@ -585,6 +626,7 @@
                         <a href="dental-work-during-pregnancy" class="block color-text-primary hover:text-white">Dental Work During Pregnancy</a>
                         <div class="font-semibold color-text-primary">Restorative Dentistry</div>
                         <a href="fillings-and-restorations" class="block color-text-primary hover:text-white">Fillings & Restorations</a>
+                        <a href="fillings-and-restorations" class="block color-text-primary hover:text-white">Fillings & Restorations</a>
                         <a href="dental-amalgam" class="block color-text-primary hover:text-white">Dental Amalgam</a>
                         <a href="dental-bonding" class="block color-text-primary hover:text-white">Dental Bonding</a>
                         <a href="dental-crowns" class="block color-text-primary hover:text-white">Dental Crowns</a>
@@ -624,10 +666,12 @@
             </div>
         </div>
     </nav>
+	
+
 
     <section id="hero-section" class="hero-section">
         <video id="hero-video" autoplay loop muted playsinline>
-            <source src="https://videos.pexels.com/video-files/853874/853874-hd_1920_1080_25fps.mp4" type="video/mp4">
+            <source src="https://vimeo.com/1095428713?share=copy#t=0" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="hero-overlay"></div>
@@ -639,7 +683,7 @@
                 Smile Keeper Dental in a Comfortable Environment
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:4107662221" class="bg-button-main color-text-on-light-bg px-6 sm:px-8 py-2 sm:py-3 rounded-full text-base sm:text-lg font-semibold hover-bg-button-dark transition duration-300 drop-shadow-md">Book Appointment</a>
+                <a href="tel:4107662221" class="bg-button-main color-text-on-light-bg px-6 sm:px-8 py-2 sm:py-3 rounded-full text-base sm:text-lg font-semibold hover-bg-button-dark transition duration-300 drop-shadow-md">Book Appointment for FREE Exam and Consultation</a>
                 <a href="sms:410-766-2221" class="bg-transparent border-2 border-button-main color-text-primary px-6 sm:px-8 py-2 sm:py-3 rounded-full text-base sm:text-lg font-semibold hover-bg-button-dark hover:border-button-main transition duration-300 drop-shadow-md">Text 410-766-2221</a>
             </div>
         </div>
@@ -648,7 +692,6 @@
     <section class="py-16 color-background-dark border-t border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl md:text-4xl font-bold color-accent-main mb-12 scroll-fade-in">Your Comfort, Our Priority</h2>
-            
 			
 			
 			
@@ -659,7 +702,7 @@
                     <div class="content-overlay">
                         <h3 class="text-xl font-semibold">Same Day Emergency</h3>
                         <p class="text-sm">Urgent dental care when you need it most.</p>
-                         
+                        
                     </div>
                 </a>
                 <a href="insurance" class="highlighted-service-card-redesigned scroll-slide-down" style="transition-delay: 0.1s;">
@@ -672,12 +715,12 @@
                     </div>
                 </a>
                 <a href="#" class="highlighted-service-card-redesigned scroll-slide-down" style="transition-delay: 0.2s;">
-                    <div class="background-image-fill" style="background-image: url('https://ibb.co/mCQTLRH5"><img src="https://i.ibb.co/N6wC8FL2/Blue-Pink-Tooth-Ache-Clean-Informative-Health-Hygiene-Dentist-Instagram-Post-2.png');"></div>
+                    <div class="background-image-fill" style="background-image: url('https://i.ibb.co/N6wC8FL2/Blue-Pink-Tooth-Ache-Clean-Informative-Health-Hygiene-Dentist-Instagram-Post-2.png');"></div>
                     <div class="overlay"></div>
                     <div class="content-overlay">
                         <h3 class="text-xl font-semibold">Discount Coupons</h3>
                         <p class="text-sm">Explore our special offers and savings.</p>
-                         
+                        
                     </div>
                 </a>
             </div>
@@ -687,7 +730,7 @@
     <section class="py-16 px-4 md:px-8 color-background-dark">
         <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/2 scroll-slide-left">
-                <img src="https://i.ibb.co/qYHtWyL1/Chat-GPT-Image-Jun-20-2025-11-33-43-PM.png" alt="Modern Dental Clinic" class="rounded-xl shadow-2xl border-2 border-button-main">
+                <img src="https://i.ibb.co/qLHzhyKP/Green-and-White-Modern-Dental-Practice-Presentation-5.png" alt="Modern Dental Clinic" class="rounded-xl shadow-2xl border-2 border-button-main">
             </div>
             <div class="md:w-1/2 text-center md:text-left scroll-slide-right">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6 color-accent-main">
@@ -700,51 +743,52 @@
                     We believe in personalized care, utilizing the latest technology and techniques to achieve beautiful, healthy smiles that last a lifetime.
                 </p>
                 <a href="#" class="px-6 py-3 bg-button-main color-text-on-light-bg font-semibold rounded-full hover-bg-button-dark transform hover:scale-105 transition duration-300">
-                    Learn More About Us
+                    Free Exam & Consult
                 </a>
             </div>
         </div>
+    </section>
  
     <section id="services" class="py-16 color-background-dark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-bold color-accent-main mb-12 text-center scroll-fade-in">Our Services</h2>
-           
+            
 
 
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-    <a href="emergencydentalservices" class="modern-service-card scroll-slide-down">
-        <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/Jww03Ggk/Gemini-Generated-Image-111cqz111cqz111c.png');"></div>
-        <div class="modern-service-card-overlay"></div>
-        <div class="modern-service-card-content">
-            <h3>Emergency Dental</h3>
-            <p>24/7 care for urgent dental needs.</p>
+            <a href="emergencydentalservices" class="modern-service-card scroll-slide-down">
+                <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/Jww03Ggk/Gemini-Generated-Image-111cqz111cqz111c.png');"></div>
+                <div class="modern-service-card-overlay"></div>
+                <div class="modern-service-card-content">
+                    <h3>Emergency Dental</h3>
+                    <p>For urgent dental needs.</p>
+                </div>
+            </a>
+            <a href="dental-implants" class="modern-service-card scroll-slide-down" style="transition-delay: 0.1s;">
+                <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/hRhJG2fW/Gemini-Generated-Image-y1b79xy1b79xy1b7.png');"></div>
+                <div class="modern-service-card-overlay"></div>
+                <div class="modern-service-card-content">
+                    <h3>Dental Implants</h3>
+                    <p>Durable solutions for missing teeth.</p>
+                </div>
+            </a>
+            <a href="snap-on-smile" class="modern-service-card scroll-slide-down" style="transition-delay: 0.2s;">
+                <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/cX2MxWvk/Blue-Pink-Tooth-Ache-Clean-Informative-Health-Hygiene-Dentist-Instagram-Post-3.png');"></div>
+                <div class="modern-service-card-overlay"></div>
+                <div class="modern-service-card-content">
+                    <h3>Snap On Smile</h3>
+                    <p>Put On a Smile in an Instant.</p>
+                </div>
+            </a>
+            <a href="allon4dentalimplants" class="modern-service-card scroll-slide-down" style="transition-delay: 0.3s;">
+                <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/5gj9Zb06/Gemini-Generated-Image-xhenbvxhenbvxhen.png');"></div>
+                <div class="modern-service-card-overlay"></div>
+                <div class="modern-service-card-content">
+                    <h3>All on 4</h3>
+                    <p>Put on Your Perfect Smile in an Instant.</p>
+                </div>
+            </a>
         </div>
-    </a>
-    <a href="dental-implants" class="modern-service-card scroll-slide-down" style="transition-delay: 0.1s;">
-        <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/hRhJG2fW/Gemini-Generated-Image-y1b79xy1b79xy1b7.png');"></div>
-        <div class="modern-service-card-overlay"></div>
-        <div class="modern-service-card-content">
-            <h3>Dental Implants</h3>
-            <p>Durable solutions for missing teeth.</p>
-        </div>
-    </a>
-    <a href="snap-on-smile" class="modern-service-card scroll-slide-down" style="transition-delay: 0.2s;">
-        <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/jvgPXX5x/Gemini-Generated-Image-d04nj9d04nj9d04n.png');"></div>
-        <div class="modern-service-card-overlay"></div>
-        <div class="modern-service-card-content">
-            <h3>Snap On Smile</h3>
-            <p>Put On a Smile in an Instant.</p>
-        </div>
-    </a>
-    <a href="allon4dentalimplants" class="modern-service-card scroll-slide-down" style="transition-delay: 0.3s;">
-        <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/5gj9Zb06/Gemini-Generated-Image-xhenbvxhenbvxhen.png');"></div>
-        <div class="modern-service-card-overlay"></div>
-        <div class="modern-service-card-content">
-            <h3>All on 4</h3>
-            <p>Put on Your Perfect Smile in an Instant.</p>
-        </div>
-    </a>
-</div>
 
 
             </div>
@@ -760,6 +804,41 @@
             <p class="color-text-primary text-lg leading-relaxed">Visit us at 7954 Baltimore Annapolis Blvd for your perfect smile!</p>
         </div>
     </section>
+	
+	
+	 <section class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="free-offer-panel">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold color-accent-main">Your Peace of Mind is Priceless</h2>
+                    <p class="mt-4 text-lg color-text-primary">That's why we offer the following at no cost to you.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <div class="offer-card">
+                        <i class="bi bi-clipboard2-pulse-fill offer-icon"></i>
+                        <h3>Free Exam</h3>
+                        <p>A comprehensive assessment of your dental health, on us.</p>
+                    </div>
+
+                    <div class="offer-card">
+                        <i class="bi bi-people-fill offer-icon"></i>
+                        <h3>Free Consultation</h3>
+                        <p>Discuss your goals and treatment options with our experts.</p>
+                    </div>
+
+                    <div class="offer-card">
+                        <i class="bi bi-patch-check-fill offer-icon"></i>
+                        <h3>Free 2nd Opinion</h3>
+                        <p>Get clarity and confidence in your dental care plan and 20% Discount</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	
 
     <section class="py-16 color-background-dark border-t border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -816,7 +895,6 @@
                     </button>
                     <div class="faq-answer px-6">
                         <p class="color-text-primary">Yes, we provide emergency dental services for urgent cases. Contact us immediately for assistance.</p>
-                        </p>
                     </div>
                 </div>
                 <div class="color-background-dark rounded-xl shadow-md border border-button-main scroll-fade-in" style="transition-delay: 0.3s;">
@@ -843,10 +921,19 @@
                 </div>
             </div>
             <div class="text-center mt-12 scroll-fade-in">
-                <p class="color-text-primary mb-4">Still have more questions? Talk to our customer happiness team.</p>
-                <a href="tel:4107662221" class="bg-button-main color-text-on-light-bg px-6 py-3 rounded-full text-base font-semibold hover-bg-button-dark transition duration-300">Talk to Us</a>
+                <p class="color-text-primary mb-4 text-lg">Still have more questions? Talk to our customer happiness team.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+                    <a href="tel:4107662221" class="bg-button-main color-text-on-light-bg px-8 py-3 rounded-full text-lg font-semibold hover-bg-button-dark transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg">
+                        <i class="bi bi-telephone-outbound-fill"></i>
+                        Call Us
+                    </a>
+                    <a href="sms:410-766-2221" class="bg-transparent border-2 border-button-main color-text-primary px-8 py-3 rounded-full text-lg font-semibold hover:bg-button-main hover:text-black transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg">
+                        <i class="bi bi-chat-text-fill"></i>
+                        Text Us
+                    </a>
+                </div>
             </div>
-        </div>
+            </div>
     </section>
 
     <section class="py-16 color-background-dark">
@@ -864,7 +951,7 @@
                 <div>
                     <div class="flex-shrink-0 mb-4">
                         <a href="/">
-                            <img src="https://i.ibb.co/LDc5L6B6/Green-and-White-Modern-Dental-Practice-Presentation-1.png" alt="Smile Keeper Dental Logo" class="h-28 w-auto">
+                            <img src="https://i.ibb.co/LDc5L6B6/Green-and-White-Modern-Dental-Practice-Presentation-1.png" alt="Smile Keeper Dental Logo" class="h-48 w-auto">
                         </a>
                     </div>
                     <p class="color-text-primary">Your trusted partner for a brighter smile in Maryland.</p>
@@ -982,8 +1069,6 @@
             document.querySelectorAll('.scroll-fade-in, .scroll-slide-left, .scroll-slide-right, .scroll-slide-down').forEach(el => {
                 observer.observe(el);
             });
-
-            // REMOVED the Hero Section Image Carousel script
             
         })(); // End of IIFE
     </script>

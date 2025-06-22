@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smile Keeper Dental - Expert Dental Care & Services</title>
+    <meta name="description" content="Smile Keeper Dental offers top-quality dental care, including cleanings, cosmetic dentistry, and implants. Book your appointment today for a brighter smile!">
+    <meta name="keywords" content="Smile Keeper Dental, dental care, dentist near me, cosmetic dentistry, dental implants, teeth whitening, family dentist">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for scroll effects and refined styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1A2F45; /* Deep Navy background */
+            color: #F8F4E3; /* Cream/Off-white for default text */
+        }
+
+        /* Unified Color Definitions */
+        .color-background-dark {
+            background-color: #1A2F45;
+        }
+        .color-text-primary {
+            color: #F8F4E3;
+        }
+        .color-text-on-light-bg {
+            color: #1A2F45;
+        }
+        .color-accent-main {
+            color: #C19F58;
+        }
+        .bg-button-main {
+            background-color: #C19F58;
+        }
+        .border-button-main {
+            border-color: #C19F58;
+        }
+        .hover-bg-button-dark:hover {
+            background-color: #A88C4A;
+        }
+        .bg-light-panel {
+            background-color: #F8F4E3;
+        }
+
+        /* MODIFIED: Hero Section with Video Background */
+        .hero-section {
+            position: relative;
+            min-height: 70vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden; /* Ensures video does not spill out */
+        }
+        
+        #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 47, 69, 0.7);
+            z-index: 1;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 640px) {
+            .hero-section {
+                min-height: 45vh;
+            }
+             /* On mobile, we can add a static fallback image if the video is too heavy */
+            #hero-video {
+                /* Optional: uncomment the line below to hide video on mobile */
+                /* display: none; */
+            }
+            .hero-section {
+                 /* Add a background image for mobile devices if video is hidden */
+                /* background-image: url('YOUR_FALLBACK_IMAGE.jpg'); */
+                /* background-size: cover; */
+                /* background-position: center; */
+            }
+        }
+
+        /* Scroll Animation Classes */
+        .scroll-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .scroll-slide-down {
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-slide-down.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .scroll-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-slide-left.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .scroll-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-slide-right.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* FAQ Accordion Styling */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+        .faq-answer.active {
+            max-height: 500px;
+            padding-bottom: 1rem;
+        }
+        .faq-toggle svg {
+            transition: transform 0.3s ease;
+        }
+        .faq-toggle.active svg {
+            transform: rotate(180deg);
+        }
+
+        /* Navigation Link Hover Effect */
+        .nav-link:hover {
+            color: #F8F4E3;
+        }
+
+        /* Service Card Hover Effect */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Custom Mobile Footer */
+        .custom-footer-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1030;
+            padding: 5px 20px;
+            box-sizing: border-box;
+        }
+        .custom-footer {
+            background-color: #1A2F45;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+            border-top: 2px solid #C19F58;
+        }
+        .footer-icon {
+            color: #C19F58;
+            text-decoration: none;
+            padding: 10px;
+            transition: color 0.3s, transform 0.2s ease;
+            position: relative;
+        }
+        .footer-icon:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            background-color: #A88C4A;
+            height: 35px;
+        }
+        .footer-icon:hover {
+            color: #F8F4E3;
+            transform: translateY(-3px);
+        }
+        .footer-icon i {
+            font-size: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .custom-footer-container {
+                display: none;
+            }
+        }
+
+        /* Map Styling */
+        .map-container {
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #C19F58;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .map-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border: 0;
+            display: block;
+        }
+        @media (max-width: 640px) {
+            .map-container {
+                border-radius: 8px;
+                border-width: 1px;
+            }
+            .map-container iframe {
+                height: 200px;
+            }
+        }
+
+        /* Mobile Logo Styling */
+        @media (max-width: 767px) {
+            .mobile-logo {
+                height: 120px;
+                width: auto;
+                max-width: 170px;
+                object-fit: contain;
+                margin: 0 auto;
+                display: block;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        }
+        @media (min-width: 768px) {
+            .desktop-logo {
+                height: 220px;
+                width: auto;
+            }
+        }
+
+        /* Button Styling for Our Story / Highlighted Services */
+        .story-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: #C19F58;
+            transition: transform 0.2s ease, color 0.2s ease;
+            text-decoration: none;
+        }
+        .story-button:hover {
+            transform: scale(1.1);
+            color: #E0E0E0;
+        }
+        .story-button i {
+            font-size: 2.5rem;
+        }
+
+        /* New styles for the redesigned highlighted service cards */
+        .highlighted-service-card-redesigned {
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #C19F58;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .highlighted-service-card-redesigned:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .highlighted-service-card-redesigned .background-image-fill {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            transition: transform 0.5s ease-in-out;
+        }
+        .highlighted-service-card-redesigned:hover .background-image-fill {
+            transform: scale(1.05);
+        }
+        .highlighted-service-card-redesigned .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 47, 69, 0.9) 0%, rgba(26, 47, 69, 0.4) 50%, rgba(26, 47, 69, 0) 100%);
+            z-index: 2;
+        }
+        .highlighted-service-card-redesigned .content-overlay {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            width: 100%;
+        }
+        .highlighted-service-card-redesigned h3 {
+            color: #F8F4E3;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .highlighted-service-card-redesigned p {
+            color: #E0E0E0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        .highlighted-service-card-redesigned .learn-more-button {
+            background-color: #C19F58;
+            color: #1A2F45;
+            padding: 8px 20px;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+        .highlighted-service-card-redesigned .learn-more-button:hover {
+            background-color: #A88C4A;
+            transform: scale(1.05);
+        }
+        @media (max-width: 768px) {
+            .highlighted-service-card-redesigned {
+                height: 250px;
+                padding: 15px;
+            }
+        }
+		
+		/* --- NEW, SAFE STYLES FOR "Our Services" SECTION --- */
+.modern-service-card {
+    display: block;
+    position: relative;
+    height: 380px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    text-decoration: none;
+    border: 2px solid #C19F58;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.modern-service-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+}
+.modern-service-card-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+.modern-service-card:hover .modern-service-card-bg {
+    transform: scale(1.1);
+}
+.modern-service-card-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(26, 47, 69, 1) 20%, rgba(26, 47, 69, 0.7) 50%, transparent 85%);
+    z-index: 1;
+}
+.modern-service-card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    padding: 1.5rem;
+    text-align: left;
+    color: #F8F4E3;
+}
+.modern-service-card-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.modern-service-card-content p {
+    font-size: 0.9rem;
+    padding-top: 0.5rem;
+    color: #E0E0E0;
+}
+
+    </style>
+</head>
+
+<body class="color-background-dark color-text-primary">
+
+    <nav class="color-background-dark shadow-md md:sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-[120px] md:h-[100px]">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/">
+                        <img src="https://i.ibb.co/LDc5L6B6/Green-and-White-Modern-Dental-Practice-Presentation-1.png" alt="Smile Keeper Dental Logo"
+                             class="hidden md:block desktop-logo">
+                        <img src="https://i.ibb.co/LDc5L6B6/Green-and-White-Modern-Dental-Practice-Presentation-1.png" alt="Smile Keeper Dental Logo"
+                             class="block md:hidden mobile-logo">
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="/" class="color-text-primary hover:text-white font-medium nav-link">Home</a>
+                    <div class="relative group">
+                        <a href="#services" class="color-text-primary hover:text-white font-medium nav-link flex items-center">
+                            Services
+                            <svg class="w-4 h-4 ml-1 color-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-64 color-background-dark shadow-lg rounded-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-300 z-50 border border-button-main">
+                            <div class="py-2">
+                                <div class="relative group/sub">
+                                    <div class="px-4 py-2 color-text-primary font-semibold flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg cursor-pointer">
+                                        General Dentistry
+                                        <svg class="w-4 h-4 color-text-primary group-hover/sub:color-text-on-light-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="absolute left-full top-0 mt-[-2px] w-64 color-background-dark shadow-lg rounded-lg opacity-0 group-hover/sub:opacity-100 group-hover/sub:visible invisible transition-all duration-300 z-50 border border-button-main">
+                                        <a href="dental-cleaning" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Cleaning</a>
+                                        <a href="denture-exams-and-maintenance" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Exams & Maintenance</a>
+                                        <a href="dental-sealants" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Sealants</a>
+                                        <a href="dental-health" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Health</a>
+                                        <a href="dental-work-during-pregnancy" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Work During Pregnancy</a>
+                                    </div>
+                                </div>
+                                <div class="relative group/sub">
+                                    <div class="px-4 py-2 color-text-primary font-semibold flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg cursor-pointer">
+                                        Restorative Dentistry
+                                        <svg class="w-4 h-4 color-text-primary group-hover/sub:color-text-on-light-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="absolute left-full top-0 mt-[-2px] w-64 color-background-dark shadow-lg rounded-lg opacity-0 group-hover/sub:opacity-100 group-hover/sub:visible invisible transition-all duration-300 z-50 border border-button-main">
+                                        <a href="fillings-and-restorations" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Fillings & Restorations</a>
+                                        <a href="dental-amalgam" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Amalgam</a>
+                                        <a href="dental-bonding" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Bonding</a>
+                                        <a href="dental-crowns" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Crowns</a>
+                                        <a href="dental-bridges" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Bridges</a>
+                                        <a href="non-surgical-root-canal" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Non-Surgical Root Canal</a>
+                                        <a href="dental-extractions" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Extractions</a>
+                                    </div>
+                                </div>
+                                <div class="relative group/sub">
+                                    <div class="px-4 py-2 color-text-primary font-semibold flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg cursor-pointer">
+                                        Cosmetic Dentistry
+                                        <svg class="w-4 h-4 color-text-primary group-hover/sub:color-text-on-light-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="absolute left-full top-0 mt-[-2px] w-64 color-background-dark shadow-lg rounded-lg opacity-0 group-hover/sub:opacity-100 group-hover/sub:visible invisible transition-all duration-300 z-50 border border-button-main">
+                                        <a href="teeth-whitening" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Teeth Whitening</a>
+                                        <a href="zoom-whitening" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Zoom Whitening</a>
+                                        <a href="laser-smile-whitening" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Laser Smile Whitening</a>
+                                        <a href="porcelain-veneers" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Porcelain Veneers</a>
+                                        <a href="snap-on-smile" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Snap-On-Smile</a>
+                                        <a href="invisalign" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Invisalign</a>
+                                        <a href="cosmetic-treatments" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Cosmetic Treatments</a>
+                                    </div>
+                                </div>
+                                <div class="relative group/sub">
+                                    <div class="px-4 py-2 color-text-primary font-semibold flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg cursor-pointer">
+                                        Dentures
+                                        <svg class="w-4 h-4 color-text-primary group-hover/sub:color-text-on-light-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="absolute left-full top-0 mt-[-2px] w-64 color-background-dark shadow-lg rounded-lg opacity-0 group-hover/sub:opacity-100 group-hover/sub:visible invisible transition-all duration-300 z-50 border border-button-main">
+                                        <a href="dentures" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dentures</a>
+                                        <a href="partial-dentures" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Partial Dentures</a>
+                                        <a href="immediate-dentures" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Immediate Dentures</a>
+                                        <a href="denture-relines" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Denture Relines</a>
+                                        <a href="denture-rebase-and-repairs" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Denture Rebase & Repairs</a>
+                                        <a href="softliners" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Soft Liners</a>
+                                        <a href="denture-care" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Denture Care</a>
+                                    </div>
+                                </div>
+                                <div class="relative group/sub">
+                                    <div class="px-4 py-2 color-text-primary font-semibold flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg cursor-pointer">
+                                        Dental Implants
+                                        <svg class="w-4 h-4 color-text-primary group-hover/sub:color-text-on-light-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="absolute left-full top-0 mt-[-2px] w-64 color-background-dark shadow-lg rounded-lg opacity-0 group-hover/sub:opacity-100 group-hover/sub:visible invisible transition-all duration-300 z-50 border border-button-main">
+                                        <a href="dental-implants" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Dental Implants</a>
+                                        <a href="allon4dentalimplants" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">All-on-4 Dental Implants</a>
+                                    </div>
+                                </div>
+                                <div class="relative group/sub">
+                                    <div class="px-4 py-2 color-text-primary font-semibold flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg cursor-pointer">
+                                        Advanced Technology
+                                        <svg class="w-4 h-4 color-text-primary group-hover/sub:color-text-on-light-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="absolute left-full top-0 mt-[-2px] w-64 color-background-dark shadow-lg rounded-lg opacity-0 group-hover/sub:opacity-100 group-hover/sub:visible invisible transition-all duration-300 z-50 border border-button-main">
+                                        <a href="cerec" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">CEREC</a>
+                                        <a href="cerec-uses" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">CEREC Uses</a>
+                                        <a href="e4d-dentist" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">E4D Dentist</a>
+                                    </div>
+                                </div>
+                                <div class="relative group/sub">
+                                    <div class="px-4 py-2 color-text-primary font-semibold flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg cursor-pointer">
+                                        Periodontal Care
+                                        <svg class="w-4 h-4 color-text-primary group-hover/sub:color-text-on-light-bg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="absolute left-full top-0 mt-[-2px] w-64 color-background-dark shadow-lg rounded-lg opacity-0 group-hover/sub:opacity-100 group-hover/sub:visible invisible transition-all duration-300 z-50 border border-button-main">
+                                        <a href="gum-disease-laser-therapy" class="block px-4 py-2 color-text-primary hover:bg-button-main hover:color-text-on-light-bg">Gum Disease Laser Therapy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="dental-implants" class="color-text-primary hover:text-white font-medium nav-link">Dental Implants</a>
+                    <a href="emergencydentalservices" class="color-text-primary hover:text-white font-medium nav-link">Emergency Dental Services</a>
+                    <a href="contact-us" class="color-text-primary hover:text-white font-medium nav-link">Contact Us</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="color-text-primary hover:text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden color-background-dark shadow-md">
+            <div class="px-4 pt-2 pb-3 space-y-1">
+                <a href="/" class="block color-text-primary hover:text-white font-medium">Home</a>
+                <div>
+                    <button id="services-toggle" class="w-full text-left color-text-primary hover:text-white font-medium flex justify-between items-center">
+                        Services
+                        <svg class="w-5 h-5 color-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="services-menu" class="hidden pl-4 space-y-1">
+                        <div class="font-semibold color-text-primary">General Dentistry</div>
+                        <a href="dental-cleaning" class="block color-text-primary hover:text-white">Dental Cleaning</a>
+                        <a href="denture-exams-and-maintenance" class="block color-text-primary hover:text-white">Dental Exams & Maintenance</a>
+                        <a href="dental-sealants" class="block color-text-primary hover:text-white">Dental Sealants</a>
+                        <a href="dental-health" class="block color-text-primary hover:text-white">Dental Health</a>
+                        <a href="dental-work-during-pregnancy" class="block color-text-primary hover:text-white">Dental Work During Pregnancy</a>
+                        <div class="font-semibold color-text-primary">Restorative Dentistry</div>
+                        <a href="fillings-and-restorations" class="block color-text-primary hover:text-white">Fillings & Restorations</a>
+                        <a href="dental-amalgam" class="block color-text-primary hover:text-white">Dental Amalgam</a>
+                        <a href="dental-bonding" class="block color-text-primary hover:text-white">Dental Bonding</a>
+                        <a href="dental-crowns" class="block color-text-primary hover:text-white">Dental Crowns</a>
+                        <a href="dental-bridges" class="block color-text-primary hover:text-white">Dental Bridges</a>
+                        <a href="non-surgical-root-canal" class="block color-text-primary hover:text-white">Non-Surgical Root Canal</a>
+                        <a href="dental-extractions" class="block color-text-primary hover:text-white">Dental Extractions</a>
+                        <div class="font-semibold color-text-primary">Cosmetic Dentistry</div>
+                        <a href="teeth-whitening" class="block color-text-primary hover:text-white">Teeth Whitening</a>
+                        <a href="zoom-whitening" class="block color-text-primary hover:text-white">Zoom Whitening</a>
+                        <a href="laser-smile-whitening" class="block color-text-primary hover:text-white">Laser Smile Whitening</a>
+                        <a href="porcelain-veneers" class="block color-text-primary hover:text-white">Porcelain Veneers</a>
+                        <a href="snap-on-smile" class="block color-text-primary hover:text-white">Snap-On-Smile</a>
+                        <a href="invisalign" class="block color-text-primary hover:text-white">Invisalign</a>
+                        <a href="cosmetic-treatments" class="block color-text-primary hover:text-white">Cosmetic Treatments</a>
+                        <div class="font-semibold color-text-primary">Dentures</div>
+                        <a href="dentures" class="block color-text-primary hover:text-white">Dentures</a>
+                        <a href="partial-dentures" class="block color-text-primary hover:text-white">Partial Dentures</a>
+                        <a href="immediate-dentures" class="block color-text-primary hover:text-white">Immediate Dentures</a>
+                        <a href="denture-relines" class="block color-text-primary hover:text-white">Denture Relines</a>
+                        <a href="denture-rebase-and-repairs" class="block color-text-primary hover:text-white">Denture Rebase & Repairs</a>
+                        <a href="softliners" class="block color-text-primary hover:text-white">Soft Liners</a>
+                        <a href="denture-care" class="block color-text-primary hover:text-white">Denture Care</a>
+                        <div class="font-semibold color-text-primary">Dental Implants</div>
+                        <a href="dental-implants" class="block color-text-primary hover:text-white">Dental Implants</a>
+                        <a href="allon4dentalimplants" class="block color-text-primary hover:text-white">All-on-4 Dental Implants</a>
+                        <div class="font-semibold color-text-primary">Advanced Technology</div>
+                        <a href="cerec" class="block color-text-primary hover:text-white">CEREC</a>
+                        <a href="cerec-uses" class="block color-text-primary hover:text-white">CEREC Uses</a>
+                        <a href="e4d-dentist" class="block color-text-primary hover:text-white">E4D Dentist</a>
+                        <div class="font-semibold color-text-primary">Periodontal Care</div>
+                        <a href="gum-disease-laser-therapy" class="block color-text-primary hover:text-white">Gum Disease Laser Therapy</a>
+                        <div class="font-semibold color-text-primary">Emergency Services</div>
+                        <a href="emergencydentalservices" class="block color-text-primary hover:text-white">Emergency Dental Services</a>
+                    </div>
+                </div>
+                <a href="contact-us" class="block color-text-primary hover:text-white font-medium">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero-section" class="hero-section">
+        <video id="hero-video" autoplay loop muted playsinline>
+            <source src="https://videos.pexels.com/video-files/853874/853874-hd_1920_1080_25fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="p-4 sm:p-8 max-w-5xl relative z-20 hero-content-wrapper scroll-fade-in">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold color-text-primary mb-4 sm:mb-6 tracking-tight drop-shadow-xl">
+                Your Dream Smile Starts Here
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl color-text-primary mb-6 sm:mb-8 font-medium drop-shadow-md max-w-3xl mx-auto">
+                Smile Keeper Dental in a Comfortable Environment
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:4107662221" class="bg-button-main color-text-on-light-bg px-6 sm:px-8 py-2 sm:py-3 rounded-full text-base sm:text-lg font-semibold hover-bg-button-dark transition duration-300 drop-shadow-md">Book Appointment</a>
+                <a href="sms:410-766-2221" class="bg-transparent border-2 border-button-main color-text-primary px-6 sm:px-8 py-2 sm:py-3 rounded-full text-base sm:text-lg font-semibold hover-bg-button-dark hover:border-button-main transition duration-300 drop-shadow-md">Text 410-766-2221</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 color-background-dark border-t border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold color-accent-main mb-12 scroll-fade-in">Your Comfort, Our Priority</h2>
+            
+			
+			
+			
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <a href="emergencydentalservices" class="highlighted-service-card-redesigned scroll-slide-down">
+                    <div class="background-image-fill" style="background-image: url('https://i.ibb.co/nNhMLBF4/Blue-Pink-Tooth-Ache-Clean-Informative-Health-Hygiene-Dentist-Instagram-Post-1.png');"></div>
+                    <div class="overlay"></div>
+                    <div class="content-overlay">
+                        <h3 class="text-xl font-semibold">Same Day Emergency</h3>
+                        <p class="text-sm">Urgent dental care when you need it most.</p>
+                         
+                    </div>
+                </a>
+                <a href="insurance" class="highlighted-service-card-redesigned scroll-slide-down" style="transition-delay: 0.1s;">
+                    <div class="background-image-fill" style="background-image: url('https://i.ibb.co/chPkJ8LW/Gemini-Generated-Image-bal9xsbal9xsbal9.png');"></div>
+                    <div class="overlay"></div>
+                    <div class="content-overlay">
+                        <h3 class="text-xl font-semibold">Insurance Accepted</h3>
+                        <p class="text-sm">We work with most major insurance providers.</p>
+                       
+                    </div>
+                </a>
+                <a href="#" class="highlighted-service-card-redesigned scroll-slide-down" style="transition-delay: 0.2s;">
+                    <div class="background-image-fill" style="background-image: url('https://ibb.co/mCQTLRH5"><img src="https://i.ibb.co/N6wC8FL2/Blue-Pink-Tooth-Ache-Clean-Informative-Health-Hygiene-Dentist-Instagram-Post-2.png');"></div>
+                    <div class="overlay"></div>
+                    <div class="content-overlay">
+                        <h3 class="text-xl font-semibold">Discount Coupons</h3>
+                        <p class="text-sm">Explore our special offers and savings.</p>
+                         
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 md:px-8 color-background-dark">
+        <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2 scroll-slide-left">
+                <img src="https://i.ibb.co/qYHtWyL1/Chat-GPT-Image-Jun-20-2025-11-33-43-PM.png" alt="Modern Dental Clinic" class="rounded-xl shadow-2xl border-2 border-button-main">
+            </div>
+            <div class="md:w-1/2 text-center md:text-left scroll-slide-right">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 color-accent-main">
+                    Where Excellence Meets Elegance
+                </h2>
+                <p class="color-text-primary text-lg leading-relaxed mb-6">
+                    Smile Keeper Dental is committed to providing unparalleled dental care in an environment of ultimate comfort and sophistication. Our state-of-the-art facility, combined with our team of world-class dental professionals, ensures a truly luxurious experience for every patient.
+                </p>
+                <p class="color-text-primary text-lg leading-relaxed mb-8">
+                    We believe in personalized care, utilizing the latest technology and techniques to achieve beautiful, healthy smiles that last a lifetime.
+                </p>
+                <a href="#" class="px-6 py-3 bg-button-main color-text-on-light-bg font-semibold rounded-full hover-bg-button-dark transform hover:scale-105 transition duration-300">
+                    Learn More About Us
+                </a>
+            </div>
+        </div>
+ 
+    <section id="services" class="py-16 color-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold color-accent-main mb-12 text-center scroll-fade-in">Our Services</h2>
+           
+
+
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <a href="emergencydentalservices" class="modern-service-card scroll-slide-down">
+        <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/Jww03Ggk/Gemini-Generated-Image-111cqz111cqz111c.png');"></div>
+        <div class="modern-service-card-overlay"></div>
+        <div class="modern-service-card-content">
+            <h3>Emergency Dental</h3>
+            <p>24/7 care for urgent dental needs.</p>
+        </div>
+    </a>
+    <a href="dental-implants" class="modern-service-card scroll-slide-down" style="transition-delay: 0.1s;">
+        <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/hRhJG2fW/Gemini-Generated-Image-y1b79xy1b79xy1b7.png');"></div>
+        <div class="modern-service-card-overlay"></div>
+        <div class="modern-service-card-content">
+            <h3>Dental Implants</h3>
+            <p>Durable solutions for missing teeth.</p>
+        </div>
+    </a>
+    <a href="snap-on-smile" class="modern-service-card scroll-slide-down" style="transition-delay: 0.2s;">
+        <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/jvgPXX5x/Gemini-Generated-Image-d04nj9d04nj9d04n.png');"></div>
+        <div class="modern-service-card-overlay"></div>
+        <div class="modern-service-card-content">
+            <h3>Snap On Smile</h3>
+            <p>Put On a Smile in an Instant.</p>
+        </div>
+    </a>
+    <a href="allon4dentalimplants" class="modern-service-card scroll-slide-down" style="transition-delay: 0.3s;">
+        <div class="modern-service-card-bg" style="background-image: url('https://i.ibb.co/5gj9Zb06/Gemini-Generated-Image-xhenbvxhenbvxhen.png');"></div>
+        <div class="modern-service-card-overlay"></div>
+        <div class="modern-service-card-content">
+            <h3>All on 4</h3>
+            <p>Put on Your Perfect Smile in an Instant.</p>
+        </div>
+    </a>
+</div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 color-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center color-background-dark p-8 rounded-xl shadow-xl border border-button-main scroll-fade-in">
+            <h2 class="text-3xl md:text-4xl font-bold color-accent-main mb-8">Our Story</h2>
+            <p class="color-text-primary text-lg leading-relaxed mb-4">At Smile Keeper Dental in Glen Burnie, Dr. Sasan Radparvar transforms smiles with compassionate care.</p>
+            <p class="color-text-primary text-lg leading-relaxed mb-4">Offering implants, veneers, and emergency services, our family-friendly clinic uses cutting-edge technology.</p>
+            <p class="color-text-primary text-lg leading-relaxed mb-4">Trusted by patients, we accept most insurance and provide financing.</p>
+            <p class="color-text-primary text-lg leading-relaxed">Visit us at 7954 Baltimore Annapolis Blvd for your perfect smile!</p>
+        </div>
+    </section>
+
+    <section class="py-16 color-background-dark border-t border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold color-accent-main mb-12 scroll-fade-in">What Our Esteemed Patients Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="color-background-dark p-6 rounded-xl shadow-lg border border-button-main scroll-slide-left">
+                    <p class="color-text-primary italic text-lg mb-6">
+                        "Smile Keeper Dental offers an unparalleled experience. The clinic is stunning, the staff are incredibly kind, and the results are truly remarkable. I've never felt so comfortable at a dentist before!"
+                    </p>
+                    <p class="color-accent-main font-semibold text-xl">- Eleanor V., Satisfied Patient</p>
+                </div>
+                <div class="color-background-dark p-6 rounded-xl shadow-lg border border-button-main scroll-slide-right">
+                    <p class="color-text-primary italic text-lg mb-6">
+                        "From the moment I walked in, I knew this was different. The attention to detail and personalized care is exceptional. My smile has never looked better. Highly recommend!"
+                    </p>
+                    <p class="color-accent-main font-semibold text-xl">- Marcus P., Happy Client</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 color-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold color-accent-main mb-12 text-center scroll-fade-in">Frequently Asked Questions</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="color-background-dark rounded-xl shadow-md border border-button-main scroll-fade-in">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg transition duration-200 focus:outline-none faq-toggle">
+                        <span class="text-lg font-semibold color-text-primary">What services does Smile Keeper Dental offer?</span>
+                        <svg class="w-5 h-5 color-text-primary transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="color-text-primary">Smile Keeper Dental provides a range of services including teeth whitening, orthodontics, dental implants, preventative care, and cosmetic dentistry.</p>
+                    </div>
+                </div>
+                <div class="color-background-dark rounded-xl shadow-md border border-button-main scroll-fade-in" style="transition-delay: 0.1s;">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg transition duration-200 focus:outline-none faq-toggle">
+                        <span class="text-lg font-semibold color-text-primary">How do I book an appointment?</span>
+                        <svg class="w-5 h-5 color-text-primary transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="color-text-primary">You can book an appointment online through our website or by calling our office directly.</p>
+                    </div>
+                </div>
+                <div class="color-background-dark rounded-xl shadow-md border border-button-main scroll-fade-in" style="transition-delay: 0.2s;">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg transition duration-200 focus:outline-none faq-toggle">
+                        <span class="text-lg font-semibold color-text-primary">Do you offer emergency dental services?</span>
+                        <svg class="w-5 h-5 color-text-primary transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="color-text-primary">Yes, we provide emergency dental services for urgent cases. Contact us immediately for assistance.</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="color-background-dark rounded-xl shadow-md border border-button-main scroll-fade-in" style="transition-delay: 0.3s;">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg transition duration-200 focus:outline-none faq-toggle">
+                        <span class="text-lg font-semibold color-text-primary">Are your treatments covered by insurance?</span>
+                        <svg class="w-5 h-5 color-text-primary transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="color-text-primary">We accept most major insurance plans. Please contact our office to verify your coverage.</p>
+                    </div>
+                </div>
+                <div class="color-background-dark rounded-xl shadow-md border border-button-main scroll-fade-in" style="transition-delay: 0.4s;">
+                    <button class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-button-main hover:color-text-on-light-bg transition duration-200 focus:outline-none faq-toggle">
+                        <span class="text-lg font-semibold color-text-primary">Can I schedule a consultation with a dentist?</span>
+                        <svg class="w-5 h-5 color-text-primary transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="color-text-primary">Yes, we offer free dental consultations to discuss your needs and treatment options.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12 scroll-fade-in">
+                <p class="color-text-primary mb-4">Still have more questions? Talk to our customer happiness team.</p>
+                <a href="tel:4107662221" class="bg-button-main color-text-on-light-bg px-6 py-3 rounded-full text-base font-semibold hover-bg-button-dark transition duration-300">Talk to Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 color-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold color-accent-main mb-12 scroll-fade-in">Find Our Location</h2>
+            <div class="map-container scroll-fade-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3087.643336044733!2d-76.62121338466185!3d39.14588727953282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7e19e7a9c80d9%3A0x6b4f74d0d0f0c0b8!2s7954%20Baltimore%20Annapolis%20Blvd%2C%20Glen%20Burnie%2C%20MD%2021060%2C%20USA!5e0!3m2!1sen!2sin!4v1678234567890!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 color-background-dark color-text-primary border-t border-button-main">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex-shrink-0 mb-4">
+                        <a href="/">
+                            <img src="https://i.ibb.co/LDc5L6B6/Green-and-White-Modern-Dental-Practice-Presentation-1.png" alt="Smile Keeper Dental Logo" class="h-28 w-auto">
+                        </a>
+                    </div>
+                    <p class="color-text-primary">Your trusted partner for a brighter smile in Maryland.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold color-text-primary mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="snap-on-smile" class="color-text-primary hover:text-white">Snap On Smile</a></li>
+                        <li><a href="dental-implants" class="color-text-primary hover:text-white">Dental Implants</a></li>
+                        <li><a href="allon4dentalimplants" class="color-text-primary hover:text-white">All On 4</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold color-text-primary mb-4">Contact Us</h3>
+                    <p class="color-text-primary">Phone: <a href="tel:4107662221" class="hover:text-white">410-766-2221</a></p>
+                    <p class="color-text-primary">Address: <a href="https://maps.app.goo.gl/HwhkKhymu3ikqjhE6" target="_blank" class="hover:text-white">7954 Baltimore Annapolis Blvd Suite 1C, Glen Burnie, MD 21060</a></p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p>© 2025 Smile Keeper Dental. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="custom-footer-container">
+        <nav class="custom-footer">
+            <a href="tel:+14107662221" class="footer-icon">
+                <i class="bi bi-telephone-fill"></i>
+            </a>
+            <a
+                href="https://maps.app.goo.gl/HwhkKhymu3ikqjhE6"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-icon"
+            >
+                <i class="bi bi-geo-alt-fill"></i>
+            </a>
+            <a
+                href="https://www.instagram.com/smilekeeperdental/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="footer-icon"
+            >
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="sms:+14107662221" target="_blank" class="footer-icon">
+                <i class="bi bi-chat-fill"></i>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Wrap all JavaScript in an IIFE to avoid global variable conflicts
+        (function() {
+            // FAQ Accordion
+            document.querySelectorAll('.faq-toggle').forEach(button => {
+                button.addEventListener('click', () => {
+                    const answer = button.nextElementSibling;
+                    const icon = button.querySelector('svg');
+                    document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
+                        if (openAnswer !== answer) {
+                            openAnswer.classList.remove('active');
+                            openAnswer.style.maxHeight = '0';
+                            openAnswer.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
+                        }
+                    });
+                    answer.classList.toggle('active');
+                    icon.classList.toggle('rotate-180');
+                    if (answer.classList.contains('active')) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    } else {
+                        answer.style.maxHeight = '0';
+                    }
+                });
+            });
+
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Mobile Services Accordion
+            const servicesToggle = document.getElementById('services-toggle');
+            const servicesMenu = document.getElementById('services-menu');
+            if (servicesToggle && servicesMenu) {
+                servicesToggle.addEventListener('click', () => {
+                    servicesMenu.classList.toggle('hidden');
+                    const icon = servicesToggle.querySelector('svg');
+                    icon.classList.toggle('rotate-180');
+                    if (!servicesMenu.classList.contains('hidden')) {
+                        servicesMenu.style.maxHeight = servicesMenu.scrollHeight + 'px';
+                    } else {
+                        servicesMenu.style.maxHeight = '0';
+                    }
+                });
+            }
+
+            // Intersection Observer for Scroll Effects
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.scroll-fade-in, .scroll-slide-left, .scroll-slide-right, .scroll-slide-down').forEach(el => {
+                observer.observe(el);
+            });
+
+            // REMOVED the Hero Section Image Carousel script
+            
+        })(); // End of IIFE
+    </script>
+</body>
+
+</html>
